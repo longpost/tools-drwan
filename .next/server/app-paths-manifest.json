@@ -1,0 +1,8 @@
+{
+  "/(tools)/bmi/page": "app/(tools)/bmi/page.js",
+  "/(tools)/page": "app/(tools)/page.js",
+  "/(tools)/bmr/page": "app/(tools)/bmr/page.js",
+  "/(tools)/tdee/page": "app/(tools)/tdee/page.js",
+  "/(tools)/heart-rate/page": "app/(tools)/heart-rate/page.js",
+  "/(tools)/glucose/page": "app/(tools)/glucose/page.js"
+}
