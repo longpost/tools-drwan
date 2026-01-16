@@ -6,13 +6,17 @@ export const metadata = {
   description: "Convert HbA1c (%) and eAG.",
 };
 
-export default function A1cPage({
+type SP = Record<string, string | string[] | undefined>;
+
+export default async function A1cPage({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Promise<SP>;
 }) {
-  const lang = getLangFromSearchParams(searchParams);
+  const sp = await searchParams;
+  const lang = getLangFromSearchParams(sp);
   const t = T[lang];
+
   return (
     <div>
       <div className="btnrow" style={{ justifyContent: "space-between" }}>
