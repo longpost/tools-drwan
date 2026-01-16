@@ -7,13 +7,17 @@ export const metadata = {
     "BMI calculator with metric and US units, category, and healthy weight range.",
 };
 
-export default function BMIPage({
+type SP = Record<string, string | string[] | undefined>;
+
+export default async function BMIPage({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Promise<SP>;
 }) {
-  const lang = getLangFromSearchParams(searchParams);
+  const sp = await searchParams;
+  const lang = getLangFromSearchParams(sp);
   const t = T[lang];
+
   return (
     <div>
       <div className="btnrow" style={{ justifyContent: "space-between" }}>
