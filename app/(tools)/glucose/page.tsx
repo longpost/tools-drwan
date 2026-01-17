@@ -6,13 +6,17 @@ export const metadata = {
   description: "Convert glucose mg/dL and mmol/L.",
 };
 
-export default function GlucosePage({
+type SP = Record<string, string | string[] | undefined>;
+
+export default async function GlucosePage({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Promise<SP>;
 }) {
-  const lang = getLangFromSearchParams(searchParams);
+  const sp = await searchParams;
+  const lang = getLangFromSearchParams(sp);
   const t = T[lang];
+
   return (
     <div>
       <div className="btnrow" style={{ justifyContent: "space-between" }}>
@@ -20,10 +24,7 @@ export default function GlucosePage({
           <h1 className="h1">{t.gluTitle}</h1>
           <p className="p">{t.gluDesc}</p>
         </div>
-        <a
-          className="chip"
-          href={lang === "zh" ? "/glucose" : "/glucose?lang=zh"}
-        >
+        <a className="chip" href={lang === "zh" ? "/glucose" : "/glucose?lang=zh"}>
           {lang === "zh" ? "EN" : "中文"}
         </a>
       </div>
@@ -33,3 +34,4 @@ export default function GlucosePage({
     </div>
   );
 }
+
