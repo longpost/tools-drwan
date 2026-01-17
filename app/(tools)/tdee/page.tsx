@@ -6,13 +6,17 @@ export const metadata = {
   description: "TDEE calculator.",
 };
 
-export default function TDEEPage({
+type SP = Record<string, string | string[] | undefined>;
+
+export default async function TDEEPage({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Promise<SP>;
 }) {
-  const lang = getLangFromSearchParams(searchParams);
+  const sp = await searchParams;
+  const lang = getLangFromSearchParams(sp);
   const t = T[lang];
+
   return (
     <div>
       <div className="btnrow" style={{ justifyContent: "space-between" }}>
@@ -30,3 +34,4 @@ export default function TDEEPage({
     </div>
   );
 }
+
