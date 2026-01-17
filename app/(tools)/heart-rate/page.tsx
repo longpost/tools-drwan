@@ -6,13 +6,17 @@ export const metadata = {
   description: "Estimated max heart rate and zones.",
 };
 
-export default function HeartRatePage({
+type SP = Record<string, string | string[] | undefined>;
+
+export default async function HeartRatePage({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Promise<SP>;
 }) {
-  const lang = getLangFromSearchParams(searchParams);
+  const sp = await searchParams;
+  const lang = getLangFromSearchParams(sp);
   const t = T[lang];
+
   return (
     <div>
       <div className="btnrow" style={{ justifyContent: "space-between" }}>
@@ -33,3 +37,4 @@ export default function HeartRatePage({
     </div>
   );
 }
+
